@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"></link>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+</h:head>
+<body>
+	<div align="center">
+		<h2 align="center" class="alert alert-primary"
+			style="max-width: 500px">User Registration Page</h2>
+
+		<br /> <br /> <img
+			src="https://twyford.ealing.sch.uk/assets/slider-images/elms-panel.jpg"
+			alt="Girl in a jacket" width="400" height="150" class="center" />
+		<h:form>
+
+			<table align="center">
+				<tr>
+					<td>Firstname:</td>
+					<td><p:inputText value="#{userbean.user.firstname}"></p:inputText></td>
+				</tr>
+				<tr>
+					<td>Lastname:</td>
+					<td><p:inputText value="#{userbean.user.lastname}"></p:inputText></td>
+				</tr>
+				
+				<tr>
+					<td>Age:</td>
+					<td><p:inputText value="#{userbean.user.age}"></p:inputText></td>
+				</tr>
+				<tr>
+					<td>Gender:</td>
+					<td><p:selectOneRadio value="#{userbean.user.gender}">
+							<f:selectItems value="#{userbean.genders}"></f:selectItems>
+						</p:selectOneRadio></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><p:commandButton action="#{userbean.saveUser()}"
+							value="Save" class="btn btn-primary active"></p:commandButton> <p:button
+							href="search.xhtml" value="Go to search" class="btn btn-primary active">
+						</p:button></td>
+				</tr>
+
+			</table>
+
+
+			<p:dataTable var="user" value="#{userbean.userlist}">
+				<p:column headerText="Id">
+					<h:outputText value="#{user.id}" />
+				</p:column>
+
+				<p:column headerText="Firstname">
+					<h:outputText value="#{user.firstname}" />
+				</p:column>
+
+				<p:column headerText="Lastname">
+					<h:outputText value="#{user.lastname}" />
+				</p:column>
+				<p:column headerText="Gender">
+					<h:outputText value="#{user.gender}" />
+				</p:column>
+				<p:column headerText="Age">
+					<h:outputText value="#{user.age}" />
+				</p:column>
+
+				<p:column headerText="Manage User">
+					<p:commandButton action="#{userbean.deleteUser(user)}"
+						value="Delete" class="btn btn-primary active"></p:commandButton>
+				</p:column>
+			</p:dataTable>
+
+
+
+		</h:form>
+	</div>
+</body>
+
+</html>
